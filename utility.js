@@ -124,3 +124,27 @@ switch (a) {
     default:
         // fallback to here
 }
+
+// ternary operator
+var a = 42;
+
+var b = (a > 41) ? "hello" : "world";
+
+// Strict Mode
+function foo() {
+    "use strict";
+
+    // this code is strict mode
+
+    function bar() {
+        // this code is strict mode
+    }
+}
+
+// this code is not strict mode
+
+// Immediately invoked function expression - IIFE
+(function IIFE(){
+    console.log( "Hello!" );
+})();
+// "Hello!"
