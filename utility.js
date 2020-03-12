@@ -148,3 +148,95 @@ function foo() {
     console.log( "Hello!" );
 })();
 // "Hello!"
+
+// More on IIFEs
+var x = (function IIFE(){
+    return 42;
+})();
+
+x;  // 42
+
+// Closures
+function makeAdder(x) {
+    // parameter `x` is an inner variable
+
+    // inner function `add()` uses `x`, so
+    // it has a "closure" over it
+    function add(y) {
+        return y + x;
+    };
+
+    return add;
+}
+
+// `plusOne` gets a reference to the inner `add(..)`
+// function with closure over the `x` parameter of
+// the outer `makeAdder(..)`
+var plusOne = makeAdder( 1 );
+
+// `plusTen` gets a reference to the inner `add(..)`
+// function with closure over the `x` parameter of
+// the outer `makeAdder(..)`
+var plusTen = makeAdder( 10 );
+
+plusOne( 3 );       // 4  <-- 1 + 3
+plusOne( 41 );      // 42 <-- 1 + 41
+
+plusTen( 13 );      // 23 <-- 10 + 13
+
+// Modules
+function User(){
+    var username, password;
+
+    function doLogin(user,pw) {
+        username = user;
+        password = pw;
+
+        // do the rest of the login work
+    }
+
+    var publicAPI = {
+        login: doLogin
+    };
+
+    return publicAPI;
+}
+
+// create a `User` module instance
+var fred = User();
+
+fred.login( "fred", "12Battery34!" );
+
+// the `this` reference type
+
+function foo() {
+    console.log( this.bar );
+}
+
+var bar = "global";
+
+var obj1 = {
+    bar: "obj1",
+    foo: foo
+};
+
+var obj2 = {
+    bar: "obj2"
+};
+
+// --------
+
+foo();              // "global"
+obj1.foo();         // "obj1"
+foo.call( obj2 );   // "obj2"
+new foo();          // undefined
+
+// Polyfilling
+if (!Number.isNaN) {
+    Number.isNaN = function isNaN(x) {
+        return x !== x;
+    };
+}
+
+// Transpiling - converts new ECMAscript conventions to older conventions for browser compatibility.
+// Babel is often used for this
