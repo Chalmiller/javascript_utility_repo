@@ -240,3 +240,18 @@ if (!Number.isNaN) {
 
 // Transpiling - converts new ECMAscript conventions to older conventions for browser compatibility.
 // Babel is often used for this
+
+// .map array function
+[1,2,3,4,5].map(function(value) {
+    return value*10;
+})
+
+// filter arary function
+[1,2,3,4,5].filter(function (value) {
+    return value > 3;
+})
+
+// reduce array function
+var sum = [1,2,3,4,5].reduce(function (prevVal, currVal, index, array) {
+    return prevVal + currVal;
+})
