@@ -255,3 +255,18 @@ if (!Number.isNaN) {
 var sum = [1,2,3,4,5].reduce(function (prevVal, currVal, index, array) {
     return prevVal + currVal;
 })
+
+// Prototypal inheritance
+function ExampleClass() {
+    this.name = "Class";
+    this.sayName = function() {
+        console.log(this.name);
+    }
+}
+
+var example1 = new ExampleClass();
+example1.sayName();
+
+ExampleClass.prototype.sayName = function() {
+    console.log(this.name);
+}
