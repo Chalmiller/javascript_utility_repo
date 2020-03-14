@@ -51,3 +51,42 @@ function getNthFiboBetter(n, lastlast, last) {
     }
     return getNthFiboBetter(n-1, last, lastlast + last);
 }
+
+/* Pascals Triangle
+    Time Complexity = O(2^n)
+*/
+function pascalTriangle(row, col) {
+    if (col ==0) {
+        return 1;
+    } else if (row == 0) {
+        return 0;
+    } else {
+        return pascalTriangle(row - 1, col) + pascalTriangle(row - 1, col - 1)
+    }
+}
+
+/* Array Permutations
+    Time Complexity = O(n!)
+    Space Complexity = O(n!)
+*/
+function swap(strArray, index1, index2) {
+    var temp = strArray[index1];
+    strArray[index1] = strArray[index2];
+    strArray[index2] = temp;
+}
+
+function permute(strArr, begin, end) {
+    if (begin == end) {
+        console.log(strArr)
+    } else {
+        for (var i = begin; i < end + 1; i++) {
+            swap(strArr, begin, i);
+            permute(strArr, begin + 1, end);
+            swap(strArr, begin, i);
+        }
+    }
+}
+
+function permuteArray(strArr) {
+    permute(strArr, 0, strArr.length - 1);
+}
